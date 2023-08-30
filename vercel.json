@@ -1,0 +1,8 @@
+{
+    "rewrites": [
+      {
+        "source": "/prod_api/(.*)", 
+        "destination": "'http://sph-api.atguigu.cn'" 
+      }
+    ]
+   }
