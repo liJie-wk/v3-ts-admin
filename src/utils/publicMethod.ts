@@ -48,7 +48,7 @@ export const beforeAvatarUpload: UploadProps["beforeUpload"] = (rawFile) => {
 };
 
 export const compatibleHttpImg = (url:string) => {
-  if(/^http:\/\/39\.98\.123\.211/.test(url)) {
+  if(import.meta.env.VITE_NODE_ENV !== 'development' && /^http:\/\/39\.98\.123\.211/.test(url)) {
     return url.replace('http://39.98.123.211','/img_api')
   } else {
     return url
