@@ -29,7 +29,7 @@
               preview-teleported
               hide-on-click-modal
               @click="findImgInd(row)"
-              :src="row.logoUrl"
+              :src="compatibleHttpImg(row.logoUrl)"
               fit="cover"
               loading="lazy"></el-image>
           </template>
@@ -67,7 +67,7 @@
         <Pagination
       :total="brandData.total"
       :page-size="PageSize"
-      @current-change="getTrademark"></Pagination>
+      @update:currentChange="getTrademark" :currentChange="brandData.currentPage"></Pagination>
     </el-card>
     <dialog-goods ref="refDialogGoods" @refresh-list="refreshList" />
   </div>
@@ -85,17 +85,17 @@ const setStore = useSetStore()
 
 //列表数据相关
 const PageSize = 10;
-let currentPage = 1;
 const brandData = reactive({
   total: 0,
   listData: <Record[]>[],
+    currentPage:1
 });
 const tableLoading = ref(false)
 
 const getTrademark = async (page = 1) => {
   tableLoading.value = true
-  currentPage = page;
-  let res = await reqTrademark(currentPage, PageSize);
+  brandData.currentPage = page;
+  let res = await reqTrademark(brandData.currentPage, PageSize);
   if (res.code === 200 && res.data) {
     brandData.listData = res.data.records;
     brandData.total = res.data.total;
@@ -117,14 +117,14 @@ type refreshListParams = "change" | "add" |"del"
 const refreshList = (params?:refreshListParams) => {
   switch (params) {
     case "change":
-      getTrademark(currentPage);
+      getTrademark(brandData.currentPage);
       break;
     case "add":
       getTrademark();
       break;
     case "del":
-      let num = currentPage;
-      if (!(brandData.listData.length - 1)) num = currentPage - 1;
+      let num = brandData.currentPage;
+      if (!(brandData.listData.length - 1)) num = brandData.currentPage - 1;
       if (num) getTrademark(num);
 
       break;

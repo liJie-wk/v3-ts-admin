@@ -74,7 +74,7 @@
       <Pagination
       :total="skuData.total"
       :page-size="PageSize"
-      @current-change="getSkuList"></Pagination>
+      @update:currentChange="getSkuList" :currentChange="skuData.currentPage"></Pagination>
     </el-card>
     <SkuInfoDrawer ref="refSkuInfoDrawer"></SkuInfoDrawer>
   </div>
@@ -88,18 +88,18 @@ import { useSetStore } from '@/store';
 const setStore = useSetStore()
 
 const PageSize = 10;
-let currentPage = 1;
 
 const skuData = reactive({
   list: <AddSkuItem[]>[],
   total: 0,
   tableLoading: false,
-  saleBtnFlag:false
+  saleBtnFlag:false,
+  currentPage:1
 });
 
 const getSkuList = async (page = 1) => {
   if (typeof page !== "number") return;
-  currentPage = page;
+  skuData.currentPage = page;
   skuData.tableLoading = true;
   let res = await reqSkuList(page, PageSize);
   if (res.code === 200 && res.data) {
@@ -142,10 +142,10 @@ const deleteSku = async (skuId: number) => {
   let res = await reqDeleteSku(skuId)
   if(res.code === 200) {
     ElMessage.success('删除成功')
-    if(currentPage === 1 || skuData.list.length > 1) {
-      getSkuList(currentPage)
+    if(skuData.currentPage === 1 || skuData.list.length > 1) {
+      getSkuList(skuData.currentPage)
     } else {
-      getSkuList(currentPage - 1)
+      getSkuList(skuData.currentPage - 1)
     }
   } else {
     ElMessage.error('删除失败')

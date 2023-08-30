@@ -139,10 +139,7 @@
 
 <script setup lang="ts">
 import { reqSpuImageList, reqSpuSaleAttrList, resEditOrAdd } from "@/api/goods";
-import {
-  fileUploadAction,
-  beforeAvatarUpload
-} from "@/utils/publicMethod";
+
 import type {
   ItemSpuRecord,
   ItemBrandList,

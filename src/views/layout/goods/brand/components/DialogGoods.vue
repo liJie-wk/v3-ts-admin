@@ -45,10 +45,6 @@
 <script setup lang="ts">
 import type { Record } from "@/api/goods/type";
 import { reqSaveOrUpdateTrademark } from "@/api/goods";
-import {
-  fileUploadAction,
-  beforeAvatarUpload,
-} from "@/utils/publicMethod";
 import type { UploadProps } from "element-plus";
 const emit = defineEmits(["refreshList"]);
 const refElf = ref();
@@ -105,7 +101,7 @@ const confirm = async () => {
   } else {
     res = await reqSaveOrUpdateTrademark({ logoUrl, tmName });
     if (res.code === 200) {
-      emit("refreshList", "add");
+      emit("refreshList", "add")
       brandItemData.show = false;
       ElMessage.success("添加成功");
     } else {

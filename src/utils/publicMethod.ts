@@ -13,13 +13,11 @@ export const objectFilter = (
 
 /**
  * // Lighten
-var NewColor = LightenDarkenColor("#F06D06", 20); 
+const NewColor = LightenDarkenColor("#F06D06", 20); 
 
 // Darken
-var NewColor = LightenDarkenColor("#F06D06", -20); 
- * @param col 
- * @param amt 
- * @returns 
+const NewColor = LightenDarkenColor("#F06D06", -20); 
+ * @desc 将一个颜色加深或减淡
  */
 export function adjustBrightness(col: string, amt: number) {
   const num = parseInt(col.charAt(0) === "#" ? col.slice(1) : col, 16);
@@ -49,6 +47,17 @@ export const beforeAvatarUpload: UploadProps["beforeUpload"] = (rawFile) => {
   return true;
 };
 
+export const compatibleHttpImg = (url:string) => {
+  if(/^http:\/\//.test(url)) {
+    return url.replace('http:','')
+  } else {
+    return url
+  }
+};
+
+
 //常量
 export const fileUploadAction =
   import.meta.env.VITE_APP_BASE_API + "/admin/product/fileUpload";
+
+export const AppTitle = import.meta.env.VITE_APP_TITLE;

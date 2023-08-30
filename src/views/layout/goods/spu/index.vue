@@ -70,7 +70,7 @@
       <Pagination
         :total="spuRootData.total"
         :page-size="spuRootData.pageSize"
-        @current-change="getSPUList"></Pagination>
+        @update:currentChange="getSPUList" :currentChange="spuRootData.currentPage"></Pagination>
     </el-card>
 
     <edit-or-add

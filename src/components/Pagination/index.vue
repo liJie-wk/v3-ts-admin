@@ -9,21 +9,24 @@
 </template>
 
 <script setup lang="ts">
-const emit = defineEmits(["currentChange"]);
-defineProps({
+const emit = defineEmits(["update:currentChange"]);
+const props = defineProps({
   pageSize: {
     type: Number,
     default: 10,
   },
   total: {
     type: Number,
-    default: 0,
+    required:true
+  },
+  currentChange: {
+    type: Number,
+    required:true
   },
 });
-const currentPage = ref(1);
-whenever(currentPage, (val: number) => {
-  emit("currentChange", val);
-});
+
+
+const currentPage = useVModel(props,'currentChange',emit)
 </script>
 
 <style scoped lang="scss"></style>

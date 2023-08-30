@@ -12,6 +12,5 @@ if(setStore.document.themeColor) setStore.setThemeColor(setStore.document.themeC
 
 const isDark = useDark()
 useToggle(isDark)
-
 </script>
 <style scoped lang="scss"></style>

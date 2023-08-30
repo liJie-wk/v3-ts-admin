@@ -19,7 +19,6 @@
 
 <script setup lang="ts">
 const userStore = useUserStore();
-const AppTitle = import.meta.env.VITE_APP_TITLE;
 </script>
 
 <style scoped lang="scss">

@@ -31,7 +31,6 @@ export default ({ command, mode }: ConfigEnv): UserConfigExport => {
           /\.vue$/,
           /\.vue\?vue/, // .vue
         ],
-
         imports: [
           "vue",
           "@vueuse/core",
@@ -42,9 +41,15 @@ export default ({ command, mode }: ConfigEnv): UserConfigExport => {
             "@/utils/publicMethod": [
               "objectFilter",
               "adjustBrightness",
+              "fileUploadAction",
+              "beforeAvatarUpload",
+              "fileUploadAction",
+              "AppTitle",
+              "compatibleHttpImg",
             ],
           },
         ],
+        vueTemplate: true,
         resolvers: [ElementPlusResolver()],
         dts: "src/auto-imports.d.ts",
       }),

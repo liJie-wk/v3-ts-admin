@@ -84,7 +84,7 @@
       <Pagination
         :total="roleData.total"
         :page-size="PageSize"
-        @current-change="getRoles"></Pagination>
+        @update:currentChange="getRoles" :currentChange="roleData.currentPage"></Pagination>
     </el-card>
     <AddOrEdit ref="refAddOrEdit" @refresh="refreshRoles"></AddOrEdit>
     <AssignPermissions ref="refAssignPermissions"></AssignPermissions>
@@ -100,7 +100,6 @@ import type { AssignRole } from "@/api/user/type";
 
 //不需要响应式
 const PageSize = 10;
-let currentPage = 1;
 
 const userStore = useUserStore();
 const setStore = useSetStore()
@@ -112,11 +111,12 @@ const roleData = reactive({
   total: 0,
   list: <AssignRole[]>[],
   tableLoading: false,
+  currentPage:1
 });
 
 const getRoles = async (page = 1) => {
   roleData.tableLoading = true;
-  currentPage = page;
+  roleData.currentPage = page;
   let res = await reqGetRoles(page, PageSize, roleData.searchStr);
   if (res.code === 200 && res.data) {
     if (res.data.records) roleData.list = res.data.records;
@@ -155,8 +155,8 @@ const rmRoles = async (ids:number[]) => {
   let res = await reqRoleBatchRemove(ids)
   if(res.code === 200) {
     ElMessage.success('删除成功')
-    if(currentPage === 1 || (roleData.list.length - ids.length) > 0) {
-      getRoles(currentPage)
+    if(roleData.currentPage === 1 || (roleData.list.length - ids.length) > 0) {
+      getRoles(roleData.currentPage)
     } else {
       getRoles()
     }

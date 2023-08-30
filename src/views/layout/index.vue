@@ -5,7 +5,7 @@
         <el-avatar shape="square" :size="30" :src="avaterPath" />
         <transition name="el-fade-in-linear">
           <h1 class="layout-container-title" v-show="!setStore.isCollapse">
-            {{ apptitle }}
+            {{ AppTitle }}
           </h1>
         </transition>
       </div>
@@ -56,7 +56,6 @@ const SliderList = appSliderList.reduce((pre,now,ind) => {
 const setStore = useSetStore();
 const route = useRoute();
 
-const apptitle = import.meta.env.VITE_APP_TITLE;
 //侧边栏文字颜色
 const textColor = ref("#CFD3DC");
 //侧边栏背景色

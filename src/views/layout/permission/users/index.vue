@@ -104,7 +104,7 @@
       <Pagination
         :total="usersData.total"
         :page-size="PageSize"
-        @current-change="getUsers"></Pagination>
+        @update:currentChange="getUsers" :currentChange="usersData.currentPage"></Pagination>
     </el-card>
     <AddOrEdit ref="refAddOrEdit" @refresh="refreshUsers"></AddOrEdit>
     <AssignRoles ref="refAssignRoles" @refresh="refreshUsers"></AssignRoles>
@@ -119,7 +119,6 @@ import SearchTable from "../components/SearchTable.vue";
 import AddOrEdit from "./components/AddOrEdit.vue";
 import AssignRoles from "./components/AssignRoles.vue";
 const PageSize = 5;
-let currentPage = 1;
 
 const userStore = useUserStore();
 const usersData = reactive({
@@ -128,11 +127,12 @@ const usersData = reactive({
   list: <ItemUserRecord[]>[],
   searchUsername: "",
   selectList: <ItemUserRecord[]>[],
+    currentPage:1
 });
 
 const getUsers = async (page = 1) => {
   usersData.tableLoading = true;
-  currentPage = page;
+  usersData.currentPage = page;
   let res = await reqGetUsers(page, PageSize, usersData.searchUsername);
   if (res.code === 200 && res.data) {
     usersData.list = res.data.records;
@@ -190,14 +190,14 @@ const batchRemoveUsers = async (ids: number[]) => {
   let res = await reqBatchRemoveUsers(ids);
   if (res.code === 200) {
     ElMessage.success("删除成功");
-    if (currentPage === 1 || usersData.list.length - ids.length > 0) {
-      getUsers(currentPage);
+    if (usersData.currentPage === 1 || usersData.list.length - ids.length > 0) {
+      getUsers(usersData.currentPage);
     } else {
-      getUsers(currentPage - 1);
+      getUsers(usersData.currentPage - 1);
     }
   } else {
     ElMessage.error("删除失败");
-    getUsers(currentPage);
+    getUsers(usersData.currentPage);
   }
 };
 
