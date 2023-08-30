@@ -48,13 +48,12 @@ export const beforeAvatarUpload: UploadProps["beforeUpload"] = (rawFile) => {
 };
 
 export const compatibleHttpImg = (url:string) => {
-  if(/^http:\/\//.test(url)) {
-    return url.replace('http:','')
+  if(/^http:\/\/39\.98\.123\.211/.test(url)) {
+    return url.replace('http://39.98.123.211','/img_api')
   } else {
     return url
   }
 };
-
 
 //常量
 export const fileUploadAction =
