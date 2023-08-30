@@ -1,8 +1,8 @@
 {
   "rewrites": [
     {
-      "source": "/prod_api",
-      "destination": "http://sph-api.atguigu.cn"
+      "source": "/prod_api/(.*)",
+      "destination": "/api/proxy"
     }
   ]
 }
