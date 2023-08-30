@@ -21,7 +21,7 @@
         <el-table-column align="center" width="200" label="图片">
           <template #="{ row }">
             <el-image
-              :src="row.skuDefaultImg || ''"
+              :src="compatibleHttpImg(row.skuDefaultImg) || ''"
               fit="contain"
               style="height: 100px;"
               loading="lazy"></el-image>

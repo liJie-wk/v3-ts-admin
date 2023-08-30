@@ -28,7 +28,7 @@
         <el-form-item label="商品图片">
           <el-carousel v-if="skuItemData.skuImageList && skuItemData.skuImageList.length > 0" :interval="4000" type="card" style="width: 100%;" height="200px">
             <el-carousel-item v-for="item in skuItemData.skuImageList" :key="item.id">
-              <el-image :src="item.imgUrl" fit="contain"></el-image>
+              <el-image :src="compatibleHttpImg(item.imgUrl)" fit="contain"></el-image>
             </el-carousel-item>
           </el-carousel>
           <el-empty v-else description="description" />

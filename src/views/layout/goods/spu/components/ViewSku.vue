@@ -6,7 +6,7 @@
         <el-table-column label="重量(g)" prop="weight" />
         <el-table-column label="图片">
           <template #="{row}">
-            <el-image :src="row.skuDefaultImg" loading="lazy" fit="contain"></el-image>
+            <el-image :src="compatibleHttpImg(row.skuDefaultImg)" loading="lazy" fit="contain"></el-image>
             
           </template>
         </el-table-column>

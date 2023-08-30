@@ -87,7 +87,7 @@
                 <template #="{ row }">
                   <el-image
                     style="height: 150px"
-                    :src="row.imgUrl"
+                    :src="compatibleHttpImg(row.imgUrl)"
                     fit="contain"
                     loading="lazy"></el-image>
                 </template>

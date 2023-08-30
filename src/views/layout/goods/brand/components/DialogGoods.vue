@@ -25,7 +25,7 @@
             :before-upload="beforeAvatarUpload">
             <img
               v-if="brandItemData.logoUrl"
-              :src="brandItemData.logoUrl"
+              :src="compatibleHttpImg(brandItemData.logoUrl)"
               class="avatar" />
             <el-icon v-else class="avatar-uploader-icon"><Plus /></el-icon>
           </el-upload>
