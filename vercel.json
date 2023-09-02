@@ -7,6 +7,14 @@
     {
       "source": "/img_api/(.*)",
       "destination": "/api/proxy"
+    },
+    {
+      "source": "/img2_api/(.*)",
+      "destination": "/api/proxy"
+    },
+    {
+      "source": "/:path*",
+      "destination": "/index.html"
     }
   ]
 }
