@@ -1,5 +1,5 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from "vue-router";
-import { useUserStore } from "@/store";
+import NotFoundComponent from '@/views/404/index.vue';
 //@ts-ignore忽略当前文件ts类型的检测否则有红色提示(打包会失败)
 import NProgress from "nprogress";
 
@@ -137,7 +137,7 @@ const router = createRouter({
     {
       path: "/:pathMatch(.*)",
       name: "404",
-      component: () => import("@/views/404/index.vue"),
+      component: NotFoundComponent 
     },
   ],
   scrollBehavior(to, from, savedPosition) {

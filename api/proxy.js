@@ -3,12 +3,16 @@
 import { createProxyMiddleware } from 'http-proxy-middleware';
 
 export default (req, res) => {
-    let target = 'http://sph-api.atguigu.cn'
+    let target;
     // 代理目标地址
     // 这里使用 backend 主要用于区分 vercel serverless 的 api 路径
     // target 替换为你跨域请求的服务器 如： http://baidu.com
     if (req.url.startsWith('/img2_api')) {
         target = 'http://139.198.127.41:9000'
+    } else if('/img_api') {
+        target = 'http://39.98.123.211/'
+    } else {
+        target = 'http://sph-api.atguigu.cn'
     }
     // 创建代理对象并转发请求
     createProxyMiddleware({
