@@ -12,7 +12,7 @@ export default (req, res) => {
     } else if(req.url.startsWith('/img_api')) {
         target = 'http://39.98.123.211/'
     } else {
-        target = 'http://139.198.104.58:8212'
+        target = 'http://sph-api.atguigu.cn'
     }
     // 创建代理对象并转发请求
     createProxyMiddleware({
