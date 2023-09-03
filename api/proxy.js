@@ -12,7 +12,7 @@ export default (req, res) => {
     } else if(req.url.startsWith('/img_api')) {
         target = 'http://39.98.123.211/'
     } else {
-        target = import.meta.env.VITE_APP_DOMAIN
+        target = 'http://139.198.104.58:8212'
     }
     // 创建代理对象并转发请求
     createProxyMiddleware({
