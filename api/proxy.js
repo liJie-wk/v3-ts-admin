@@ -9,7 +9,7 @@ export default (req, res) => {
     // target 替换为你跨域请求的服务器 如： http://baidu.com
     if (req.url.startsWith('/img2_api')) {
         target = 'http://139.198.127.41:9000'
-    } else if('/img_api') {
+    } else if(req.url.startsWith('/img_api')) {
         target = 'http://39.98.123.211/'
     } else {
         target = import.meta.env.VITE_APP_DOMAIN
