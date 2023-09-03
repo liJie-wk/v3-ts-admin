@@ -12,7 +12,7 @@ export default (req, res) => {
     } else if('/img_api') {
         target = 'http://39.98.123.211/'
     } else {
-        target = 'http://sph-api.atguigu.cn'
+        target = import.meta.env.VITE_APP_DOMAIN
     }
     // 创建代理对象并转发请求
     createProxyMiddleware({

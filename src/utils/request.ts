@@ -15,7 +15,6 @@ request.interceptors.response.use(
     return response.data;
   },
   (error) => {
-    console.log(error);
     //处理网络错误
     let msg = "";
     let status = error.response?.status || error.code;
