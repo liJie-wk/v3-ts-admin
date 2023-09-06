@@ -586,8 +586,8 @@ const createRightPie = () => {
           value: 10,
           itemStyle: {
             color: "#fff",
-              borderWidth: 0,
-              borderColor: "rgba(0,0,0,0)",
+            borderWidth: 0,
+            borderColor: "rgba(0,0,0,0)",
           },
         });
       } else {
@@ -596,8 +596,8 @@ const createRightPie = () => {
           value: 25,
           itemStyle: {
             color: "rgba(0,0,0,0)",
-              borderWidth: 0,
-              borderColor: "rgba(0,0,0,0)",
+            borderWidth: 0,
+            borderColor: "rgba(0,0,0,0)",
           },
         });
       }
@@ -809,15 +809,15 @@ const createRightPie = () => {
             value: 25,
             itemStyle: {
               color: new echarts.graphic.LinearGradient(0, 1, 0, 0, [
-                  {
-                    offset: 0,
-                    color: "rgba(51,149,191,0.5)",
-                  },
-                  {
-                    offset: 1,
-                    color: "rgba(51,149,191,0)",
-                  },
-                ]),
+                {
+                  offset: 0,
+                  color: "rgba(51,149,191,0.5)",
+                },
+                {
+                  offset: 1,
+                  color: "rgba(51,149,191,0)",
+                },
+              ]),
             },
           },
           {
@@ -825,15 +825,15 @@ const createRightPie = () => {
             value: 25,
             itemStyle: {
               color: new echarts.graphic.LinearGradient(0, 1, 0, 0, [
-                  {
-                    offset: 0,
-                    color: "rgba(0,0,0,0)",
-                  },
-                  {
-                    offset: 1,
-                    color: "rgba(51,149,191,0.5)",
-                  },
-                ]),
+                {
+                  offset: 0,
+                  color: "rgba(0,0,0,0)",
+                },
+                {
+                  offset: 1,
+                  color: "rgba(51,149,191,0.5)",
+                },
+              ]),
             },
           },
           {
@@ -841,15 +841,15 @@ const createRightPie = () => {
             value: 25,
             itemStyle: {
               color: new echarts.graphic.LinearGradient(0, 1, 0, 0, [
-                  {
-                    offset: 0,
-                    color: "rgba(51,149,191,0)",
-                  },
-                  {
-                    offset: 1,
-                    color: "rgba(51,149,191,0.5)",
-                  },
-                ]),
+                {
+                  offset: 0,
+                  color: "rgba(51,149,191,0)",
+                },
+                {
+                  offset: 1,
+                  color: "rgba(51,149,191,0.5)",
+                },
+              ]),
             },
           },
           {
@@ -857,15 +857,15 @@ const createRightPie = () => {
             value: 25,
             itemStyle: {
               color: new echarts.graphic.LinearGradient(0, 1, 0, 0, [
-                  {
-                    offset: 0,
-                    color: "rgba(51,149,191,0.5)",
-                  },
-                  {
-                    offset: 1,
-                    color: "rgba(0,0,0,0)",
-                  },
-                ]),
+                {
+                  offset: 0,
+                  color: "rgba(51,149,191,0.5)",
+                },
+                {
+                  offset: 1,
+                  color: "rgba(0,0,0,0)",
+                },
+              ]),
             },
           },
         ],
@@ -1314,6 +1314,9 @@ $BottomMargin: 16px;
   background-size: cover;
   height: 100vh;
   position: relative;
+  :deep(.el-text) {
+    color: #59b4e6ff;
+  }
 
   .root-screen-container {
     width: $WDesignDraft;
@@ -1353,7 +1356,6 @@ $BottomMargin: 16px;
             left: 50%;
             top: 50%;
             transform: translate(-50%, -50%) scale(2);
-            color: #59b4e6ff;
           }
         }
       }

@@ -11,10 +11,6 @@
     {
       "source": "/img2_api/(.*)",
       "destination": "/api/proxy"
-    },
-    {
-      "source": "/(.*)",
-      "destination": "/"
     }
   ]
 }
