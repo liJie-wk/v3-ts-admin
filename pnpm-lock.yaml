@@ -61,9 +61,6 @@ devDependencies:
   vite:
     specifier: ^4.4.0
     version: registry.npmmirror.com/vite@4.4.4(sass@1.63.6)
-  vite-plugin-compression:
-    specifier: ^0.5.1
-    version: registry.npmmirror.com/vite-plugin-compression@0.5.1(vite@4.4.4)
   vite-plugin-pwa:
     specifier: ^0.16.4
     version: registry.npmmirror.com/vite-plugin-pwa@0.16.4(vite@4.4.4)(workbox-build@7.0.0)(workbox-window@7.0.0)
@@ -5935,22 +5932,6 @@ packages:
     name: vary
     version: 1.1.2
     engines: {node: '>= 0.8'}
-    dev: true
-
-  registry.npmmirror.com/vite-plugin-compression@0.5.1(vite@4.4.4):
-    resolution: {integrity: sha512-5QJKBDc+gNYVqL/skgFAP81Yuzo9R+EAf19d+EtsMF/i8kFUpNi3J/H01QD3Oo8zBQn+NzoCIFkpPLynoOzaJg==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/vite-plugin-compression/-/vite-plugin-compression-0.5.1.tgz}
-    id: registry.npmmirror.com/vite-plugin-compression/0.5.1
-    name: vite-plugin-compression
-    version: 0.5.1
-    peerDependencies:
-      vite: '>=2.0.0'
-    dependencies:
-      chalk: registry.npmmirror.com/chalk@4.1.2
-      debug: registry.npmmirror.com/debug@4.3.4
-      fs-extra: registry.npmmirror.com/fs-extra@10.1.0
-      vite: registry.npmmirror.com/vite@4.4.4(sass@1.63.6)
-    transitivePeerDependencies:
-      - supports-color
     dev: true
 
   registry.npmmirror.com/vite-plugin-pwa@0.16.4(vite@4.4.4)(workbox-build@7.0.0)(workbox-window@7.0.0):
