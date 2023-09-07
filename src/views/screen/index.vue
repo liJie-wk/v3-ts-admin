@@ -1468,6 +1468,7 @@ $BottomMargin: 16px;
               .rank-row {
                 display: flex;
                 height: 50px;
+                color: white;
                 &.bgimg {
                   background: url("@/assets/images/screen/rankingChart-bg.png")
                     top center no-repeat;

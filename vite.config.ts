@@ -19,7 +19,7 @@ export default ({ command, mode }: ConfigEnv): UserConfigExport => {
           target: env.VITE_APP_DOMAIN,
           changeOrigin: true,
           rewrite(path) {
-            return path.replace(/^\/(dev_api|prod_api)/, "");
+            return path.replace(new RegExp(`^${env.VITE_APP_BASE_API}`), "");
           },
         },
       },

@@ -14,7 +14,7 @@
             <el-button
             type="primary"
             size="default"
-            @click="router.replace('home')"
+            @click="router.replace({name:'home'})"
             >返回</el-button
           >
           </div>
