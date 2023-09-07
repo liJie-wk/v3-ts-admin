@@ -61,6 +61,9 @@ devDependencies:
   vite:
     specifier: ^4.4.0
     version: registry.npmmirror.com/vite@4.4.4(sass@1.63.6)
+  vite-plugin-compression:
+    specifier: ^0.5.1
+    version: registry.npmmirror.com/vite-plugin-compression@0.5.1(vite@4.4.4)
   vite-plugin-pwa:
     specifier: ^0.16.4
     version: registry.npmmirror.com/vite-plugin-pwa@0.16.4(vite@4.4.4)(workbox-build@7.0.0)(workbox-window@7.0.0)
@@ -433,7 +436,7 @@ packages:
     version: 7.22.13
     engines: {node: '>=6.9.0'}
     dependencies:
-      '@babel/helper-validator-identifier': registry.npmmirror.com/@babel/helper-validator-identifier@7.22.5
+      '@babel/helper-validator-identifier': registry.npmmirror.com/@babel/helper-validator-identifier@7.22.15
       chalk: registry.npmmirror.com/chalk@2.4.2
       js-tokens: registry.npmmirror.com/js-tokens@4.0.0
     dev: true
@@ -1060,7 +1063,7 @@ packages:
       '@babel/helper-hoist-variables': registry.npmmirror.com/@babel/helper-hoist-variables@7.22.5
       '@babel/helper-module-transforms': registry.npmmirror.com/@babel/helper-module-transforms@7.22.15(@babel/core@7.22.15)
       '@babel/helper-plugin-utils': registry.npmmirror.com/@babel/helper-plugin-utils@7.22.5
-      '@babel/helper-validator-identifier': registry.npmmirror.com/@babel/helper-validator-identifier@7.22.5
+      '@babel/helper-validator-identifier': registry.npmmirror.com/@babel/helper-validator-identifier@7.22.15
     dev: true
 
   registry.npmmirror.com/@babel/plugin-transform-modules-umd@7.22.5(@babel/core@7.22.15):
@@ -5932,6 +5935,22 @@ packages:
     name: vary
     version: 1.1.2
     engines: {node: '>= 0.8'}
+    dev: true
+
+  registry.npmmirror.com/vite-plugin-compression@0.5.1(vite@4.4.4):
+    resolution: {integrity: sha512-5QJKBDc+gNYVqL/skgFAP81Yuzo9R+EAf19d+EtsMF/i8kFUpNi3J/H01QD3Oo8zBQn+NzoCIFkpPLynoOzaJg==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/vite-plugin-compression/-/vite-plugin-compression-0.5.1.tgz}
+    id: registry.npmmirror.com/vite-plugin-compression/0.5.1
+    name: vite-plugin-compression
+    version: 0.5.1
+    peerDependencies:
+      vite: '>=2.0.0'
+    dependencies:
+      chalk: registry.npmmirror.com/chalk@4.1.2
+      debug: registry.npmmirror.com/debug@4.3.4
+      fs-extra: registry.npmmirror.com/fs-extra@10.1.0
+      vite: registry.npmmirror.com/vite@4.4.4(sass@1.63.6)
+    transitivePeerDependencies:
+      - supports-color
     dev: true
 
   registry.npmmirror.com/vite-plugin-pwa@0.16.4(vite@4.4.4)(workbox-build@7.0.0)(workbox-window@7.0.0):

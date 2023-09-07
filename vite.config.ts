@@ -6,6 +6,7 @@ import AutoImport from "unplugin-auto-import/vite";
 import Components from "unplugin-vue-components/vite";
 import { ElementPlusResolver } from "unplugin-vue-components/resolvers";
 import { VitePWA } from 'vite-plugin-pwa'
+import viteCompression from 'vite-plugin-compression';
 
 // https://vitejs.dev/config/
 export default ({ command, mode }: ConfigEnv): UserConfigExport => {
@@ -66,7 +67,10 @@ export default ({ command, mode }: ConfigEnv): UserConfigExport => {
         // Specify symbolId format
         symbolId: "icon-[dir]-[name]",
       }),
-      VitePWA()
+      VitePWA(),
+      viteCompression({
+        threshold: 10240, // the unit is Bytes
+      }),
     ],
     resolve: {
       alias: {
