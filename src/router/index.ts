@@ -1,4 +1,4 @@
-import { createRouter, createWebHistory, RouteRecordRaw } from "vue-router";
+import { createRouter, createWebHashHistory, RouteRecordRaw } from "vue-router";
 import NotFoundComponent from '@/views/404/index.vue';
 //@ts-ignore忽略当前文件ts类型的检测否则有红色提示(打包会失败)
 import NProgress from "nprogress";
@@ -119,7 +119,7 @@ export const screen: RouteRecordRaw = {
 };
 
 const router = createRouter({
-  history: createWebHistory(),
+  history: createWebHashHistory(),
   routes: [
     {
       path: "/",
