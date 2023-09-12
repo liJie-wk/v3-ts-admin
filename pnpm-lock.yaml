@@ -43,9 +43,6 @@ devDependencies:
   fast-glob:
     specifier: ^3.3.0
     version: registry.npmmirror.com/fast-glob@3.3.0
-  http-proxy-middleware:
-    specifier: ^2.0.6
-    version: registry.npmmirror.com/http-proxy-middleware@2.0.6
   sass:
     specifier: ^1.63.6
     version: registry.npmmirror.com/sass@1.63.6
@@ -2040,14 +2037,6 @@ packages:
     version: 1.0.1
     dev: true
 
-  registry.npmmirror.com/@types/http-proxy@1.17.11:
-    resolution: {integrity: sha512-HC8G7c1WmaF2ekqpnFq626xd3Zz0uvaqFmBJNRZCGEZCXkvSdJoNFn/8Ygbd9fKNQj8UzLdCETaI0UWPAjK7IA==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@types/http-proxy/-/http-proxy-1.17.11.tgz}
-    name: '@types/http-proxy'
-    version: 1.17.11
-    dependencies:
-      '@types/node': registry.npmmirror.com/@types/node@20.4.2
-    dev: true
-
   registry.npmmirror.com/@types/lodash-es@4.17.8:
     resolution: {integrity: sha512-euY3XQcZmIzSy7YH5+Unb3b2X12Wtk54YWINBvvGQ5SmMvwb11JQskGsfkH/5HXK77Kr8GF0wkVDIxzAisWtog==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@types/lodash-es/-/lodash-es-4.17.8.tgz}
     name: '@types/lodash-es'
@@ -3334,12 +3323,6 @@ packages:
     engines: {node: '>= 0.6'}
     dev: true
 
-  registry.npmmirror.com/eventemitter3@4.0.7:
-    resolution: {integrity: sha512-8guHBZCwKnFhYdHr2ysuRWErTwhoN2X8XELRlrRwpmfeY2jjuUN4taQMsULKUVo1K4DvZl+0pgfyoysHxvmvEw==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/eventemitter3/-/eventemitter3-4.0.7.tgz}
-    name: eventemitter3
-    version: 4.0.7
-    dev: true
-
   registry.npmmirror.com/expand-brackets@2.1.4:
     resolution: {integrity: sha512-w/ozOKR9Obk3qoWeY/WDi6MFta9AoMR+zud60mdnbniMcBxRuFJyDt2LdX/14A1UABeqk+Uk+LDfUpvoGKppZA==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/expand-brackets/-/expand-brackets-2.1.4.tgz}
     name: expand-brackets
@@ -3466,6 +3449,7 @@ packages:
     peerDependenciesMeta:
       debug:
         optional: true
+    dev: false
 
   registry.npmmirror.com/for-each@0.3.3:
     resolution: {integrity: sha512-jqYfLp7mo9vIyQf8ykW2v7A+2N4QjeCeI5+Dz9XraiO1ign81wjiH7Fb9vSOWvQfNtmSa4H2RoQTrrXivdUZmw==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/for-each/-/for-each-0.3.3.tgz}
@@ -3793,39 +3777,6 @@ packages:
       readable-stream: registry.npmmirror.com/readable-stream@3.6.2
     dev: true
 
-  registry.npmmirror.com/http-proxy-middleware@2.0.6:
-    resolution: {integrity: sha512-ya/UeJ6HVBYxrgYotAZo1KvPWlgB48kUJLDePFeneHsVujFaW5WNj2NgWCAE//B1Dl02BIfYlpNgBy8Kf8Rjmw==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/http-proxy-middleware/-/http-proxy-middleware-2.0.6.tgz}
-    name: http-proxy-middleware
-    version: 2.0.6
-    engines: {node: '>=12.0.0'}
-    peerDependencies:
-      '@types/express': ^4.17.13
-    peerDependenciesMeta:
-      '@types/express':
-        optional: true
-    dependencies:
-      '@types/http-proxy': registry.npmmirror.com/@types/http-proxy@1.17.11
-      http-proxy: registry.npmmirror.com/http-proxy@1.18.1
-      is-glob: registry.npmmirror.com/is-glob@4.0.3
-      is-plain-obj: registry.npmmirror.com/is-plain-obj@3.0.0
-      micromatch: registry.npmmirror.com/micromatch@4.0.5
-    transitivePeerDependencies:
-      - debug
-    dev: true
-
-  registry.npmmirror.com/http-proxy@1.18.1:
-    resolution: {integrity: sha512-7mz/721AbnJwIVbnaSv1Cz3Am0ZLT/UBwkC92VlxhXv/k/BBQfM2fXElQNC27BVGr0uwUpplYPQM9LnaBMR5NQ==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/http-proxy/-/http-proxy-1.18.1.tgz}
-    name: http-proxy
-    version: 1.18.1
-    engines: {node: '>=8.0.0'}
-    dependencies:
-      eventemitter3: registry.npmmirror.com/eventemitter3@4.0.7
-      follow-redirects: registry.npmmirror.com/follow-redirects@1.15.2
-      requires-port: registry.npmmirror.com/requires-port@1.0.0
-    transitivePeerDependencies:
-      - debug
-    dev: true
-
   registry.npmmirror.com/idb@7.1.1:
     resolution: {integrity: sha512-gchesWBzyvGHRO9W8tzUWFDycow5gwjvFKfyV9FF32Y7F50yZMp7mP+T2mJIWFx49zicqyC4uefHM17o6xKIVQ==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/idb/-/idb-7.1.1.tgz}
     name: idb
@@ -4079,13 +4030,6 @@ packages:
     name: is-plain-obj
     version: 1.1.0
     engines: {node: '>=0.10.0'}
-    dev: true
-
-  registry.npmmirror.com/is-plain-obj@3.0.0:
-    resolution: {integrity: sha512-gwsOE28k+23GP1B6vFl1oVh/WOzmawBrKwo5Ev6wMKzPkaXaCDIQKzLnvsA42DRlbVTWorkgTKIviAKCWkfUwA==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/is-plain-obj/-/is-plain-obj-3.0.0.tgz}
-    name: is-plain-obj
-    version: 3.0.0
-    engines: {node: '>=10'}
     dev: true
 
   registry.npmmirror.com/is-plain-object@2.0.4:
@@ -5053,12 +4997,6 @@ packages:
     name: require-from-string
     version: 2.0.2
     engines: {node: '>=0.10.0'}
-    dev: true
-
-  registry.npmmirror.com/requires-port@1.0.0:
-    resolution: {integrity: sha512-KigOCHcocU3XODJxsu8i/j8T9tzT4adHiecwORRQ0ZZFcp7ahwXuRU1m+yuO90C5ZUyGeGfocHDI14M3L3yDAQ==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/requires-port/-/requires-port-1.0.0.tgz}
-    name: requires-port
-    version: 1.0.0
     dev: true
 
   registry.npmmirror.com/resolve-url@0.2.1:

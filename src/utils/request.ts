@@ -5,8 +5,10 @@ const request = axios.create({
   baseURL: import.meta.env.VITE_APP_BASE_API,
   timeout: 5000,
 });
+let userStore:any = null
+
 request.interceptors.request.use((config) => {
-  const userStore = useUserStore();
+  if(userStore === null) userStore = useUserStore();
   if (userStore.token) config.headers.token = userStore.token;
   return config;
 });

@@ -104,7 +104,8 @@
       <Pagination
         :total="usersData.total"
         :page-size="PageSize"
-        @update:currentChange="getUsers" :currentChange="usersData.currentPage"></Pagination>
+        @update:currentChange="getUsers"
+        :currentChange="usersData.currentPage"></Pagination>
     </el-card>
     <AddOrEdit ref="refAddOrEdit" @refresh="refreshUsers"></AddOrEdit>
     <AssignRoles ref="refAssignRoles" @refresh="refreshUsers"></AssignRoles>
@@ -112,7 +113,6 @@
 </template>
 
 <script setup lang="ts">
-import { useUserStore } from "@/store";
 import { reqGetUsers, reqBatchRemoveUsers } from "@/api/user";
 import type { ItemUserRecord } from "@/api/user/type";
 import SearchTable from "../components/SearchTable.vue";
@@ -127,7 +127,7 @@ const usersData = reactive({
   list: <ItemUserRecord[]>[],
   searchUsername: "",
   selectList: <ItemUserRecord[]>[],
-    currentPage:1
+  currentPage: 1,
 });
 
 const getUsers = async (page = 1) => {

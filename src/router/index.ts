@@ -150,9 +150,10 @@ const router = createRouter({
     }
   },
 });
+let userStore:any = null
 
 router.beforeEach(async (to: any, from: any) => {
-  const userStore = useUserStore();
+  if(userStore === null) userStore = useUserStore();
   NProgress.start();
   //这里应该还要判断token是否过期
   if (userStore.token) {
