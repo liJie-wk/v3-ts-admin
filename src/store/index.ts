@@ -3,12 +3,24 @@ import { reqLogin, reqUserInfo, reqLogout } from "@/api/user/index";
 import type { loginFormData, checkUser } from "@/api/user/type";
 
 import { verifyPermissionsRoutes } from "@/router";
+import type { RouteRecordRaw } from "vue-router";
 
+function routesDisabled(routes: RouteRecordRaw[],userData:checkUser) {
+  routes.forEach((currentItem) => {
+    (currentItem.meta as any).isDisabled = !userData.routes.includes(
+      currentItem.name as string
+    );
+
+    if (currentItem.children && currentItem.children.length > 0) {
+      routesDisabled(currentItem.children,userData);
+    }
+  });
+}
 export const useUserStore = defineStore("user", {
   state: () => {
     return {
       token: useStorage<string | null>("TOKEN", null),
-      userData: <checkUser | undefined>undefined,
+      userData: <checkUser | null>null,
     };
   },
   getters: {},
@@ -27,7 +39,7 @@ export const useUserStore = defineStore("user", {
         let res = await reqUserInfo();
         if (res.code === 200 && res.data) {
           this.userData = res.data;
-          this.routesDisabled(verifyPermissionsRoutes.value);
+          routesDisabled(verifyPermissionsRoutes.value,this.userData);
           resolve({code:200})
         } else {
           this.clearUserData();
@@ -39,19 +51,8 @@ export const useUserStore = defineStore("user", {
     },
     clearUserData() {
       reqLogout();
-      this.userData = undefined;
+      this.userData = null;
       this.token = null;
-    },
-    routesDisabled(routes: any[]) {
-      routes.forEach((currentItem) => {
-        currentItem.meta.isDisabled = !this.userData?.routes.includes(
-          currentItem.name
-        );
-
-        if (currentItem.children && currentItem.children.length > 0) {
-          this.routesDisabled(currentItem.children);
-        }
-      });
     },
   },
 });
@@ -64,7 +65,6 @@ const rootPrimaryColor = useCssVar(
 );
 const isCollapse = useStorage("isCollapse", false);
 const toggleCollapse = useToggle(isCollapse);
-
 export const useSetStore = defineStore("set", {
   state: () => {
     return {

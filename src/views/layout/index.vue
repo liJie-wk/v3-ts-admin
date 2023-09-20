@@ -26,7 +26,7 @@
       </el-header>
       <el-main>
         <router-view #="{ Component }">
-          <transition name="el-fade-in">
+          <transition name="el-fade-in-linear" mode="out-in">
             <component
               v-if="isRefresh ? Component : ''"
               :is="isRefresh ? Component : ''" />

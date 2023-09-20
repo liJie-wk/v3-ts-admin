@@ -29,20 +29,19 @@ const tableLoading = ref(false);
 const roleAPData = ref(<ItemRoleAssignPermission[]>[]);
 const checkedKeys = ref(<number[]>[]);
 const getSelectedIds = (
-  params: ItemRoleAssignPermission[],
-  initialValue: number[] = []
+  params: ItemRoleAssignPermission[]
 ) => {
   return params.reduce((pre, now) => {
     if (now.select) {
-      if (now.children && now.children.length > 0) {
-        getSelectedIds(now.children, pre);
+      if (now.children instanceof Array && now.children.length > 0) {
+        pre.push(...getSelectedIds(now.children));
       } else {
         pre.push(now.id);
       }
     }
 
     return pre;
-  }, initialValue);
+  }, <number[]>[]);
 };
 
 const show = ref(false);
