@@ -66,7 +66,11 @@ export default ({ command, mode }: ConfigEnv): UserConfigExport => {
         // Specify symbolId format
         symbolId: "icon-[dir]-[name]",
       }),
-      VitePWA()
+      VitePWA({
+        workbox:{
+          globPatterns: ["**\/*.{js,css,html,ico,jpg,png,svg,webp}"],
+        }
+      })
     ],
     resolve: {
       alias: {

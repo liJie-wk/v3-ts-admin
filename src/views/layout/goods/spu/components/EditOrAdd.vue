@@ -34,7 +34,7 @@
 
       <el-form-item label="SPU图片">
         <el-upload
-          v-model:file-list="fileList"
+          v-model:file-list="filterFileList"
           :action="fileUploadAction"
           list-type="picture-card"
           :before-upload="beforeAvatarUpload"
@@ -207,10 +207,15 @@ const dialogImg = reactive({
   url: "",
 });
 const fileList = ref<UploadUserFile[]>([]);
+const filterFileList = computed(() => {
+  return fileList.value.map((item) => {
+    return { name: item.name, url:  compatibleHttpImg(item.url)};
+  });
+})
 const imgUploadSuccess: UploadProps["onSuccess"] = (response, uploadFile) => {
   if (response.code === 200 && response.data) {
     let item = fileList.value.find((item) => item.uid === uploadFile.uid);
-    if (item) item.url = compatibleHttpImg(response.data);
+    if (item) item.url = response.data;
   } else {
     let index = fileList.value.findIndex((item) => item.uid === uploadFile.uid);
     if (index !== -1) {
@@ -222,7 +227,7 @@ const getImgList = async (id: number) => {
   let res = await reqSpuImageList(id);
   if (res.code === 200 && res.data) {
     let arr = res.data.map((item) => {
-      return { name: item.imgName, url: compatibleHttpImg(item.imgUrl) };
+      return { name: item.imgName, url: item.imgUrl };
     });
     fileList.value = arr;
   }
