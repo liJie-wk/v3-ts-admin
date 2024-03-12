@@ -141,7 +141,7 @@ const refDialogGoods = ref();
 //图片预览
 const srcList = ref(<[string]>[''])
 const findImgInd = (row:Record) => {
-  srcList.value[0] = row.logoUrl
+  srcList.value[0] = compatibleHttpImg(row.logoUrl)
 };
 
 

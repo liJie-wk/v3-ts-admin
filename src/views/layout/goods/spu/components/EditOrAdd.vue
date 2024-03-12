@@ -43,7 +43,7 @@
           <el-icon><Plus /></el-icon>
         </el-upload>
         <el-dialog v-model="dialogImg.show">
-          <img w-full :src="dialogImg.url" alt="Preview Image" />
+          <img w-full :src="compatibleHttpImg(dialogImg.url)" alt="Preview Image" />
         </el-dialog>
       </el-form-item>
       <el-form-item label="SPU销售属性">
@@ -210,7 +210,7 @@ const fileList = ref<UploadUserFile[]>([]);
 const imgUploadSuccess: UploadProps["onSuccess"] = (response, uploadFile) => {
   if (response.code === 200 && response.data) {
     let item = fileList.value.find((item) => item.uid === uploadFile.uid);
-    if (item) item.url = response.data;
+    if (item) item.url = compatibleHttpImg(response.data);
   } else {
     let index = fileList.value.findIndex((item) => item.uid === uploadFile.uid);
     if (index !== -1) {
@@ -222,7 +222,7 @@ const getImgList = async (id: number) => {
   let res = await reqSpuImageList(id);
   if (res.code === 200 && res.data) {
     let arr = res.data.map((item) => {
-      return { name: item.imgName, url: item.imgUrl };
+      return { name: item.imgName, url: compatibleHttpImg(item.imgUrl) };
     });
     fileList.value = arr;
   }
