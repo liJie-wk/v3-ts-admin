@@ -55,7 +55,7 @@
                 </div>
               </div>
               <div class="left-aside-item-bottom">
-                <div style="height: 270px" ref="refLiquidfill"></div>
+               <AsyncLiquidfil :allPeopleNum="allPeopleNum" :peopleNum="peopleNum"></AsyncLiquidfil>
               </div>
             </div>
             <div class="left-aside-item">
@@ -137,7 +137,7 @@
                     style="height: 26px"></el-image>
                   <el-text size="small">景区实时客流量</el-text>
                 </div>
-                <div ref="refAtlas" style="height: 100%"></div>
+                <AsyncAtlas></AsyncAtlas>
               </div>
               <div class="main-container-bottom">
                 <div class="left-top-item">
@@ -277,21 +277,21 @@ import {
   BarChart,
   PieChart,
   LinesChart,
-  EffectScatterChart,
-  MapChart,
   LineChart,
 } from "echarts/charts";
 import {
   PolarComponent,
   LegendComponent,
   TooltipComponent,
-  GeoComponent,
   GridComponent,
-  VisualMapComponent,
 } from "echarts/components";
-import "echarts-liquidfill";
-import geoJson from "@/assets/json/flight_map.json";
-import type { GeoJSON } from "echarts/types/src/coord/geo/geoTypes";
+const AsyncAtlas = defineAsyncComponent(() =>
+  import('./components/Atlas/index.vue')
+)
+const AsyncLiquidfil = defineAsyncComponent(() => 
+  import('./components/Liquidfill/index.vue')
+)
+
 import type { ECharts } from "echarts/core";
 import { SVGRenderer } from "echarts/renderers";
 echarts.use([
@@ -301,11 +301,7 @@ echarts.use([
   LegendComponent,
   TooltipComponent,
   LinesChart,
-  EffectScatterChart,
-  MapChart,
-  GeoComponent,
   GridComponent,
-  VisualMapComponent,
   LineChart,
   SVGRenderer,
 ]);
@@ -368,162 +364,7 @@ const currentPeoples = computed(() => {
 const getPercentage = (val: number, allValue: number) => {
   return parseInt(((val / allValue) * 100).toString());
 };
-//水球图
-const refLiquidfill = ref();
-const createLiquidfill = () => {
-  function Pie() {
-    // 外层虚线圈数据
-    let dataArr = [];
-    for (var i = 0; i < 150; i++) {
-      if (i % 2 === 0) {
-        dataArr.push({
-          name: (i + 1).toString(),
-          value: 50,
-          itemStyle: {
-            color: "#19A4BB",
-            borderWidth: 0,
-            borderColor: "rgba(0,0,0,0)",
-          },
-        });
-      } else {
-        dataArr.push({
-          name: (i + 1).toString(),
-          value: 100,
-          itemStyle: {
-            color: "rgba(0,0,0,0)",
-            borderWidth: 0,
-            borderColor: "rgba(0,0,0,0)",
-          },
-        });
-      }
-    }
-    return dataArr;
-  }
-  const rate = parseFloat((peopleNum.value / allPeopleNum.value).toFixed(2));
-  const option = {
-    polar: {
-      radius: ["75%", "80%"],
-      center: ["50%", "50%"],
-    },
-    angleAxis: {
-      max: 100,
-      clockwise: false,
-      startAngle: 180,
-      axisLine: {
-        show: false,
-      },
-      axisTick: {
-        show: false,
-      },
-      axisLabel: {
-        show: false,
-      },
-      splitLine: {
-        show: false,
-      },
-    },
-    radiusAxis: {
-      type: "category",
-      show: true,
-      axisLabel: {
-        show: false,
-      },
-      axisLine: {
-        show: false,
-      },
-      axisTick: {
-        show: false,
-      },
-    },
-    series: [
-      {
-        // 水波球
-        // value: 50, //  内容 配合formatter
-        type: "liquidFill",
-        name: "预估量",
-        radius: "70%", // 控制中间圆球的尺寸（此处可以理解为距离外圈圆的距离控制）
-        center: ["50%", "50%"],
-        data: [rate, rate, rate], // data个数代表波浪数
-        backgroundStyle: {
-          borderWidth: 1,
-          color: "rgba(62, 208, 255, 1)", // 球体本景色
-        },
-        amplitude: "6%", //波浪的振幅
-        color: [
-          {
-            type: "linear",
-            x: 0,
-            y: 0,
-            x2: 0,
-            y2: 1,
-            colorStops: [
-              {
-                offset: 1,
-                color: "#6CDEFC",
-              },
-              {
-                offset: 0,
-                color: "#429BF7",
-              },
-            ],
-            globalCoord: false,
-          },
-        ],
-        label: {
-          formatter: "{a}",
-          fontSize: 24,
-          color: "#fff",
-        },
-        outline: {
-          show: false,
-        },
-      },
-      {
-        // 外层虚线环
-        type: "pie",
-        zlevel: 0,
-        silent: true,
-        radius: ["76%", "78%"],
-        z: 1,
-        label: {
-          show: false,
-        },
-        labelLine: {
-          show: false,
-        },
-        data: Pie(),
-      },
-      {
-        // 进度条环
-        name: "",
-        type: "bar",
-        roundCap: true,
-        z: 2,
-        showBackground: false,
-        data: [rate * 100],
 
-        coordinateSystem: "polar",
-        barWidth: 30, //大的占比环
-        itemStyle: {
-          opacity: 1,
-          color: new echarts.graphic.LinearGradient(0, 0, 1, 1, [
-            {
-              offset: 0,
-              color: "#19A4BB",
-            },
-            {
-              offset: 1,
-              color: "#22C7DA",
-            },
-          ]),
-        },
-      },
-    ],
-  };
-  const myChart = echarts.init(refLiquidfill.value, null, { renderer: "svg" });
-  myChart.setOption(option);
-  return myChart;
-};
 
 //左侧饼图
 const refLeftPie = ref();
@@ -878,197 +719,7 @@ const createRightPie = () => {
   return myChart;
 };
 
-//地图
-const refAtlas = ref();
-const createAtlas = () => {
-  const points = [
-    { value: [118.8062, 31.9208], itemStyle: { color: "#4ab2e5" } },
-    { value: [127.9688, 45.368], itemStyle: { color: "#4fb6d2" } },
-    { value: [110.3467, 41.4899], itemStyle: { color: "#52b9c7" } },
-    { value: [125.8154, 44.2584], itemStyle: { color: "#5abead" } },
-    { value: [116.4551, 40.2539], itemStyle: { color: "#f34e2b" } },
-    { value: [123.1238, 42.1216], itemStyle: { color: "#f56321" } },
-    { value: [114.4995, 38.1006], itemStyle: { color: "#f56f1c" } },
-    { value: [117.4219, 39.4189], itemStyle: { color: "#f58414" } },
-    { value: [112.3352, 37.9413], itemStyle: { color: "#f58f0e" } },
-    { value: [109.1162, 34.2004], itemStyle: { color: "#f5a305" } },
-    { value: [103.5901, 36.3043], itemStyle: { color: "#e7ab0b" } },
-    { value: [106.3586, 38.1775], itemStyle: { color: "#dfae10" } },
-    { value: [101.4038, 36.8207], itemStyle: { color: "#d5b314" } },
-    { value: [103.9526, 30.7617], itemStyle: { color: "#c1bb1f" } },
-    { value: [108.384366, 30.439702], itemStyle: { color: "#b9be23" } },
-    { value: [113.0823, 28.2568], itemStyle: { color: "#a6c62c" } },
-    { value: [102.9199, 25.46639], itemStyle: { color: "#96cc34" } },
-    { value: [113.280637, 23.125178] },
-  ];
-  const aircraftRouteData = points.map((item) => {
-    return item.itemStyle
-      ? {
-          coords: [item.value, points[points.length - 1].value],
-          lineStyle: item.itemStyle,
-        }
-      : "";
-  });
-  aircraftRouteData.pop();
-  const option = {
-    geo: {
-      map: "china",
-      aspectScale: 0.75, //长宽比
-      zoom: 1.1,
-      roam: false,
-      itemStyle: {
-        areaColor: {
-          type: "radial",
-          x: 0.5,
-          y: 0.5,
-          r: 0.8,
-          colorStops: [
-            {
-              offset: 0,
-              color: "#09132c", // 0% 处的颜色
-            },
-            {
-              offset: 1,
-              color: "#274d68", // 100% 处的颜色
-            },
-          ],
-          globalCoord: true, // 缺省为 false
-        },
-        shadowColor: "rgb(58,115,192)",
-        shadowOffsetX: 10,
-        shadowOffsetY: 11,
-      },
-      regions: [
-        {
-          name: "南海诸岛",
-          itemStyle: {
-            areaColor: "rgba(0, 10, 52, 1)",
-            borderColor: "rgba(0, 10, 52, 1)",
-            opacity: 0,
-            label: {
-              show: false,
-              color: "#009cc9",
-            },
-          },
-        },
-      ],
-      emphasis: {
-        itemStyle: {
-          areaColor: "#2AB8FF",
-          borderWidth: 0,
-          color: "green",
-          label: {
-            show: false,
-          },
-        },
-      },
-    },
-    series: [
-      {
-        type: "map",
-        roam: false,
-        label: {
-          show: true,
-          color: "#1DE9B6",
-        },
 
-        itemStyle: {
-          borderColor: "rgb(147, 235, 248)",
-          borderWidth: 1,
-          areaColor: {
-            type: "radial",
-            x: 0.5,
-            y: 0.5,
-            r: 0.8,
-            colorStops: [
-              {
-                offset: 0,
-                color: "#09132c", // 0% 处的颜色
-              },
-              {
-                offset: 1,
-                color: "#274d68", // 100% 处的颜色
-              },
-            ],
-            globalCoord: true, // 缺省为 false
-          },
-        },
-        emphasis: {
-          itemStyle: {
-            areaColor: "rgb(46,229,206)",
-            borderWidth: 0.1,
-          },
-          label: {
-            color: "rgb(183,185,14)",
-          },
-        },
-        zoom: 1.1,
-        //     roam: false,
-        map: "china", //使用
-      },
-      {
-        type: "effectScatter",
-        coordinateSystem: "geo",
-        showEffectOn: "render",
-        zlevel: 1,
-        rippleEffect: {
-          period: 15,
-          scale: 4,
-          brushType: "fill",
-        },
-        label: {
-          formatter: "{b}",
-          position: "right",
-          offset: [15, 0],
-          color: "#1DE9B6",
-          show: true,
-        },
-        itemStyle: {
-          color: "#1DE9B6" /* function (value){ //随机颜色
- return "#"+("00000"+((Math.random()*16777215+0.5)>>0).toString(16)).slice(-6);
- }*/,
-          shadowBlur: 10,
-          shadowColor: "#333",
-        },
-        symbolSize: 12,
-        data: points,
-      }, //地图线的动画效果
-      {
-        type: "lines",
-        zlevel: 2,
-        effect: {
-          show: true,
-          period: 4, //箭头指向速度，值越小速度越快
-          trailLength: 0.4, //特效尾迹长度[0,1]值越大，尾迹越长重
-          symbol: "arrow", //箭头图标
-          symbolSize: 7, //图标大小
-        },
-        lineStyle: {
-          color: "#1DE9B6",
-          /* function (value){ //随机颜色
-
-                        ['#f21347','#f3243e','#f33736','#f34131','#f34e2b',
-                        '#f56321','#f56f1c','#f58414','#f58f0e','#f5a305',
-                        '#e7ab0b','#dfae10','#d5b314','#c1bb1f','#b9be23',
-                        '#a6c62c','#96cc34','#89d23b','#7ed741','#77d64c',
-                        '#71d162','#6bcc75','#65c78b','#5fc2a0','#5abead',
-                        '#52b9c7','#4fb6d2','#4ab2e5']
- return "#"+("00000"+((Math.random()*16777215+0.5)>>0).toString(16)).slice(-6);
- }*/ width: 1, //线条宽度
-          opacity: 0.1, //尾迹线条透明度
-          curveness: 0.3, //尾迹线条曲直度
-        },
-        data: aircraftRouteData,
-      },
-    ],
-  };
-
-  echarts.registerMap("china", geoJson as GeoJSON);
-  const myChart = echarts.init(refAtlas.value);
-
-  myChart.setOption(option);
-  return myChart;
-};
 
 //中下折线图
 const refLineChart = ref();
@@ -1273,9 +924,7 @@ const createYearLine = () => {
 };
 onMounted(() => {
   myEcharts.push(
-    createLiquidfill(),
     createLeftPie(),
-    createAtlas(),
     createLineChart(),
     createYearLine(),
     createRightPie()
@@ -1310,7 +959,7 @@ $BottomMargin: 16px;
   }
 }
 .root-screen {
-  background: url("@/assets/images/screen/bg.png") center no-repeat;
+  background: url("@/assets/images/screen/bg.webp") center no-repeat;
   background-size: cover;
   height: 100vh;
   position: relative;

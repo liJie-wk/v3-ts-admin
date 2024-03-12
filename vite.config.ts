@@ -67,8 +67,10 @@ export default ({ command, mode }: ConfigEnv): UserConfigExport => {
         symbolId: "icon-[dir]-[name]",
       }),
       VitePWA({
+        registerType: 'autoUpdate',
+        manifest:false,
         workbox:{
-          globPatterns: ["**\/*.{js,css,html,ico,jpg,png,svg,webp}"],
+          globPatterns: ["**\/*.{js,css,html,ico,jpg,png,svg,webp,gif}"],
         }
       })
     ],

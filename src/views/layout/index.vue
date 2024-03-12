@@ -43,7 +43,7 @@ import type { RouteRecordRaw } from "vue-router";
 import RecursionSliderList from "./components/RecursionSliderList.vue";
 import TopTabbar from "./components/TopTabbar.vue";
 
-import avaterPath from "@/assets/images/common/avater.png";
+import avaterPath from "@/assets/images/common/avater.webp";
 
 import { appSliderList,screen } from "@/router/index";
 
