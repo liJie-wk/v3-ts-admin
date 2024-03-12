@@ -8,6 +8,7 @@ declare global {
   const AppTitle: typeof import('@/utils/publicMethod')['AppTitle']
   const EffectScope: typeof import('vue')['EffectScope']
   const ElMessage: typeof import('element-plus/es')['ElMessage']
+  const ElNotification: typeof import('element-plus/es')['ElNotification']
   const acceptHMRUpdate: typeof import('pinia')['acceptHMRUpdate']
   const adjustBrightness: typeof import('@/utils/publicMethod')['adjustBrightness']
   const asyncComputed: typeof import('@vueuse/core')['asyncComputed']

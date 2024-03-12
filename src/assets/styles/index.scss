@@ -1,5 +1,4 @@
 @import "./reset.scss";
-@import "nprogress/nprogress.css";
 body {
   font-family: "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB",
     "Microsoft YaHei", "微软雅黑", Arial, sans-serif;
@@ -9,6 +8,9 @@ body {
 }
 .el-table .warning-row {
   --el-table-tr-bg-color: var(--el-color-warning-light-9);
+}
+.el-select {
+  --el-select-width: 200px !important;
 }
 .center-position {
   position: absolute;

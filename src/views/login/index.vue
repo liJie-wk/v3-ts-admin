@@ -38,12 +38,10 @@
       </el-col>
     </el-row>
 
-    <!-- <svg-icon name="lock" color="red" width="40px" height="40px"></svg-icon> -->
   </div>
 </template>
 
 <script setup lang="ts">
-import { ElNotification } from 'element-plus';
 
 const userStore = useUserStore();
 
@@ -87,9 +85,9 @@ const loginClick = async () => {
   let res = await userStore.userLogin(userData);
   if (res.code === 200) {
     $router.replace("/home");
-    ElNotification.success('登陆成功')
+    ElMessage.success('登陆成功')
   } else {
-    ElNotification.error('登陆失败')
+    ElMessage.error('登陆失败')
   }
   loginBtn.value = false;
 };

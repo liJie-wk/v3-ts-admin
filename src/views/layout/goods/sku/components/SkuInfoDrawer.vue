@@ -1,5 +1,5 @@
 <template>
-  <el-drawer v-model="show">
+  <el-drawer v-model="show" size="50%">
     <template #header>
       <h4>{{ skuItemData.skuName || "商品详情" }}</h4>
     </template>
@@ -26,9 +26,9 @@
           >
         </el-form-item>
         <el-form-item label="商品图片">
-          <el-carousel v-if="skuItemData.skuImageList && skuItemData.skuImageList.length > 0" :interval="4000" type="card" style="width: 100%;" height="200px">
+          <el-carousel v-if="skuItemData.skuImageList instanceof Array && skuItemData.skuImageList.length > 0" type="card" style="width: 100%;">
             <el-carousel-item v-for="item in skuItemData.skuImageList" :key="item.id">
-              <el-image :src="compatibleHttpImg(item.imgUrl)" fit="contain"></el-image>
+              <div class="center-hv" style="height: 100%;"><el-image :src="compatibleHttpImg(item.imgUrl)" fit="contain"></el-image></div>
             </el-carousel-item>
           </el-carousel>
           <el-empty v-else description="description" />

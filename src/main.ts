@@ -4,6 +4,7 @@ const app = createApp(App)
 
 //样式
 import "@/assets/styles/index.scss"
+import "nprogress/nprogress.css";
 import 'element-plus/theme-chalk/dark/css-vars.css'
 
 import { createPinia } from "pinia"

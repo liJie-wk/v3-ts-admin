@@ -1,5 +1,5 @@
 <template>
-  <el-dialog title="SKU列表" v-model="show" width="30%">
+  <el-dialog title="SKU列表" v-model="show" width="60%">
     <el-table :data="itemSkuData" border stripe>
         <el-table-column label="名字" prop="skuName" />
         <el-table-column label="价格(元)" prop="price" />
