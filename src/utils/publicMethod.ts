@@ -61,6 +61,8 @@ export const compatibleHttpImg = (url:string) => {
   }
 };
 
+
+
 //常量
 export const fileUploadAction =
   import.meta.env.VITE_APP_BASE_API + "/admin/product/fileUpload";
