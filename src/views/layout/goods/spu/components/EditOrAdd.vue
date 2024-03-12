@@ -43,7 +43,7 @@
           <el-icon><Plus /></el-icon>
         </el-upload>
         <el-dialog v-model="dialogImg.show">
-          <img w-full :src="dialogImg.url" alt="Preview Image" />
+          <img w-full :src="compatibleHttpImg(dialogImg.url)" alt="Preview Image" />
         </el-dialog>
       </el-form-item>
       <el-form-item label="SPU销售属性">
